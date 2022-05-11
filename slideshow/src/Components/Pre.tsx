@@ -1,11 +1,11 @@
-import React from "react"
-const Pre=()=>{
-    
-const loadPreImage=()=>{
+import React,{useState} from "react";
 
-}
-return(
-  <input type="button" value="pre" onClick={loadPreImage}></input> 
-)
-}
+const Pre = (props: { onPre:any}) => {
+  const loadPreImage = () => {
+    console.log("herheee")
+    props.onPre()
+    //props.allImages;
+  };
+  return <input type="button" value="pre" onClick={loadPreImage}></input>;
+};
 export default Pre;
