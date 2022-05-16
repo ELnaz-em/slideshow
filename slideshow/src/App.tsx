@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import images from "./assets";
-import Next from "./Components/Next";
-import Pre from "./Components/Pre";
+import Button from "./Components/Button";
 function App() {
   const [index, setIndex] = useState(0);
 
@@ -24,8 +23,8 @@ function App() {
         alt="CPH Harbor"
       />
       <br></br>
-      <Pre onPre={onImgChangetoPre} />
-      <Next onNext={onImgChangetoNext} />
+      <Button onClick={onImgChangetoPre} text="Back"/>
+      <Button onClick={onImgChangetoNext} text="Next"/>
     </div>
   );
 }
