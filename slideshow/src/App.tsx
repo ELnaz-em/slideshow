@@ -1,8 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import images from "./assets";
 import Button from "./Components/Button";
-function App() {
+
+const App = () => {
+    const [images,setImages]=useState<string[]>([])
+
+    async function getImages() {
+    const url = "https://picsum.photos/v2/list";
+    try {
+
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      const imagesUrl: string[]=[];
+
+      jsonData.map((jsonElement: { download_url: string; }) => {
+        imagesUrl.push(jsonElement.download_url);
+      })
+      setImages(imagesUrl);
+      console.log("here: "+images[0])
+    } catch (err) {
+      console.log("MYERROR: " + err);
+    }
+  };
+  useEffect(() => {
+    getImages()
+  }, []);
+
   const [index, setIndex] = useState(0);
 
   const onImgChangetoPre = () => {
@@ -23,10 +46,10 @@ function App() {
         alt="CPH Harbor"
       />
       <br></br>
-      <Button onClick={onImgChangetoPre} text="Back"/>
-      <Button onClick={onImgChangetoNext} text="Next"/>
+      <Button onClick={onImgChangetoPre} text="Back" />
+      <Button onClick={onImgChangetoNext} text="Next" />
     </div>
   );
-}
+};
 
 export default App;
